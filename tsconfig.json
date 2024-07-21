@@ -1,3 +1,16 @@
+// prettier-ignore
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",     /* Recommended React Native TSConfig base */
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./src/types", "./node_modules/"],
+    "sourceMap": true,
+    "declaration": false,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "emitDecoratorMetadata": false,
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": false,
+    "noEmit": true,
+  },
 }
