@@ -9,7 +9,7 @@ const useCats = () => {
 				page,
 				limit: 10,
 				size: 'small',
-				order: 'ASC',
+				order: 'RAND',
 				hasBreeds: true,
 				mimeTypes: ['jpg'],
 			})
