@@ -19,6 +19,7 @@ const ScreenLayout = ({ children }: ScreenLayoutProps) => {
 const styles = StyleSheet.create({
 	mainContainer: {
 		flex: 1,
+		paddingTop: 20,
 		backgroundColor: 'white',
 	},
 })

@@ -1,12 +1,5 @@
 import { useCallback, useRef } from 'react'
-import {
-	ActivityIndicator,
-	Dimensions,
-	Pressable,
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native'
+import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
 import {
 	Extrapolation,
 	interpolate,
@@ -140,7 +133,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: 'red',
 	},
 	carousel: {
 		flexGrow: 1,
@@ -150,7 +142,6 @@ const styles = StyleSheet.create({
 	},
 	buttonsContainer: {
 		bottom: 10,
-		backgroundColor: 'blue',
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
