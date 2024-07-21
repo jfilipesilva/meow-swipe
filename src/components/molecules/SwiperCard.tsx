@@ -18,8 +18,8 @@ const SwiperCard = ({ imageURL }: SwiperCardProps) => {
 const styles = StyleSheet.create({
 	mainContainer: {
 		flex: 1,
-		alignItems: 'center',
 		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	image: {
 		width: '80%',

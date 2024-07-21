@@ -1,5 +1,12 @@
 import { useCallback, useRef } from 'react'
-import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
+import {
+	ActivityIndicator,
+	Dimensions,
+	Pressable,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native'
 import {
 	Extrapolation,
 	interpolate,
@@ -8,16 +15,24 @@ import {
 import Carousel, {
 	ICarouselInstance,
 	TAnimationStyle,
-	TCarouselProps,
 } from 'react-native-reanimated-carousel'
 import SwiperCard, { SwiperCardProps } from '../../molecules/SwiperCard'
 
 export type SwiperData = SwiperCardProps[]
-export type SwiperProps = Pick<TCarouselProps, 'onSnapToItem'> & {
+export type SwiperProps = {
 	data: SwiperData
+	isLoading: boolean
+	onPressLeft: (index: number) => void
+	onPressRight: (index: number) => void
+	loadPagination: (index: number) => void
 }
 
-const Swiper = ({ data, ...props }: SwiperProps) => {
+const Swiper = ({
+	data,
+	onPressLeft,
+	onPressRight,
+	loadPagination,
+}: SwiperProps) => {
 	const ref = useRef<ICarouselInstance>(null)
 
 	const PAGE_WIDTH = Dimensions.get('window').width
@@ -68,7 +83,7 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 	)
 
 	return (
-		<View style={{ flex: 1 }}>
+		<View style={styles.mainContainer}>
 			<Carousel
 				ref={ref}
 				loop={false}
@@ -87,7 +102,14 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 				renderItem={({ item }) => renderItem(item)}
 				customAnimation={animationStyle}
 				windowSize={5}
-				{...props}
+				onSnapToItem={index => {
+					loadPagination(index)
+					if (directionAnimVal.value === Math.sign(1)) {
+						onPressRight(index)
+					} else {
+						onPressLeft(index)
+					}
+				}}
 			/>
 			<View style={styles.buttonsContainer}>
 				<Pressable
@@ -112,6 +134,7 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 }
 
 const styles = StyleSheet.create({
+	mainContainer: { flex: 1 },
 	carousel: {
 		flex: 1,
 		alignItems: 'center',

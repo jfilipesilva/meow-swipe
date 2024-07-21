@@ -3,9 +3,11 @@ import ScreenLayout from '../layouts/ScreenLayout'
 import useCats from '../hooks/useCats'
 import HomeScreenTemplate from '../templates/HomeScreenTemplate'
 import { SwiperData } from '../components/organisms/Swiper/Swiper'
+import { theCatAPI } from '../api/catApi/catApi'
+import { useCallback } from 'react'
 
 const HomeScreen = () => {
-	const { catListData, loadPagination } = useCats()
+	const { catListData, loadPagination, isLoading, isValidating } = useCats()
 
 	const swiperData: SwiperData = catListData.map(cat => {
 		return {
@@ -20,9 +22,43 @@ const HomeScreen = () => {
 		}
 	})
 
+	const upVote = useCallback(
+		(index: number) => {
+			try {
+				theCatAPI.votes.addVote({
+					imageId: catListData[index].id,
+					value: 1,
+				})
+			} catch (error) {
+				console.error(error)
+			}
+		},
+		[catListData.length, theCatAPI],
+	)
+
+	const downVote = useCallback(
+		(index: number) => {
+			try {
+				theCatAPI.votes.addVote({
+					imageId: catListData[index].id,
+					value: -1,
+				})
+			} catch (error) {
+				console.error(error)
+			}
+		},
+		[catListData.length, theCatAPI],
+	)
+
 	return (
 		<ScreenLayout>
-			<HomeScreenTemplate data={swiperData} onSnapToItem={loadPagination} />
+			<HomeScreenTemplate
+				isLoading={isLoading || isValidating}
+				data={swiperData}
+				loadPagination={loadPagination}
+				onPressRight={upVote}
+				onPressLeft={downVote}
+			/>
 		</ScreenLayout>
 	)
 }
