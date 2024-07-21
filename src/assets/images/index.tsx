@@ -1,2 +1,7 @@
 export { default as StarIcon } from './star.svg'
 export { default as HotIcon } from './hot.svg'
+export { default as HeartIcon } from './heart.svg'
+export { default as MessageIcon } from './message-circle.svg'
+export { default as PawIcon } from './paw-pad.svg'
+export { default as UserIcon } from './user.svg'
+export { default as XIcon } from './x.svg'

@@ -1,4 +1,5 @@
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import palette from '../../theme/palette'
 
 export type SwiperCardProps = {
 	title: string
@@ -39,13 +40,13 @@ const styles = StyleSheet.create({
 		bottom: Dimensions.get('window').height * 0.12,
 	},
 	imageContainer: {
-		height: Dimensions.get('window').height * 0.6,
+		height: Dimensions.get('window').width + 100,
 		width: Dimensions.get('window').width * 0.9,
 		borderRadius: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: 'white',
-		shadowColor: '#000000d1',
+		shadowColor: palette.shadowColor,
 		shadowOffset: {
 			width: 0,
 			height: 10,
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
 	descriptionText: {
 		fontSize: 10,
 		fontWeight: '700',
-		color: '#BFBFC0',
+		color: palette.inactiveColor,
 	},
 })
 

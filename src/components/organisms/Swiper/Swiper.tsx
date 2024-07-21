@@ -10,6 +10,8 @@ import Carousel, {
 	TAnimationStyle,
 } from 'react-native-reanimated-carousel'
 import SwiperCard, { SwiperCardProps } from '../../molecules/SwiperCard'
+import { HeartIcon, XIcon } from '../../../assets/images'
+import palette from '../../../theme/palette'
 
 export type SwiperData = SwiperCardProps[]
 export type SwiperProps = {
@@ -113,7 +115,7 @@ const Swiper = ({
 						directionAnimVal.value = Math.sign(-1)
 						ref.current?.next()
 					}}>
-					<Text>Left</Text>
+					<XIcon />
 				</Pressable>
 				<Pressable
 					style={styles.button}
@@ -121,7 +123,7 @@ const Swiper = ({
 						directionAnimVal.value = Math.sign(1)
 						ref.current?.next()
 					}}>
-					<Text>Right</Text>
+					<HeartIcon />
 				</Pressable>
 			</View>
 		</>
@@ -141,18 +143,18 @@ const styles = StyleSheet.create({
 		alignContent: 'center',
 	},
 	buttonsContainer: {
-		bottom: 10,
+		paddingBottom: 20,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	button: {
-		height: 80,
+		height: 54,
 		aspectRatio: 1,
 		borderRadius: 80,
 		justifyContent: 'center',
 		alignItems: 'center',
-		shadowColor: '#000',
+		shadowColor: palette.shadowColor,
 		backgroundColor: 'white',
 		marginHorizontal: 20,
 		shadowOffset: {
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.23,
 		shadowRadius: 2.62,
-		elevation: 4,
+		elevation: 10,
 	},
 })
 

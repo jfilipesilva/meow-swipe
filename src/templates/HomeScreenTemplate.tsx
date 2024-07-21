@@ -3,6 +3,7 @@ import Swiper, { SwiperProps } from '../components/organisms/Swiper/Swiper'
 import { StyleSheet, useWindowDimensions, View } from 'react-native'
 import { HotIcon, StarIcon } from '../assets/images'
 import { useState } from 'react'
+import palette from '../theme/palette'
 
 type HomeScreenTemplateProps = SwiperProps
 
@@ -24,17 +25,17 @@ const renderTabBar = (props: TabBarProps<Route>) => {
 		<TabBar
 			{...props}
 			style={styles?.tabBar}
-			activeColor="#EC537E"
-			inactiveColor="#BFBFC0"
+			activeColor={palette.activeColor}
+			inactiveColor={palette.inactiveColor}
 			tabStyle={styles?.tabStyle}
 			indicatorStyle={styles?.indicatorStyle}
 			indicatorContainerStyle={styles?.indicatorContainerStyle}
 			renderLabel={({ route, focused, color }) => {
 				switch (route.key) {
 					case 'first':
-						return <HotIcon fill={focused ? color : '#BFBFC0'} />
+						return <HotIcon fill={focused ? color : palette.inactiveColor} />
 					case 'second':
-						return <StarIcon fill={focused ? color : '#BFBFC0'} />
+						return <StarIcon fill={focused ? color : palette.inactiveColor} />
 					default:
 						return null
 				}
@@ -72,6 +73,8 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		borderRadius: 20,
 		backgroundColor: '#E3E3E4',
+		marginTop: 20,
+		shadowColor: 'transparent',
 	},
 	tabSceneContainer: {
 		paddingHorizontal: 20,
