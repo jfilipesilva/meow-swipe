@@ -1,5 +1,12 @@
 import { useCallback, useRef } from 'react'
-import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
+import {
+	ActivityIndicator,
+	Dimensions,
+	Pressable,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native'
 import {
 	Extrapolation,
 	interpolate,
@@ -24,6 +31,7 @@ export type SwiperProps = {
 
 const Swiper = ({
 	data,
+	isLoading,
 	onPressLeft,
 	onPressRight,
 	loadPagination,
@@ -80,6 +88,12 @@ const Swiper = ({
 	return (
 		<>
 			<View style={styles.mainContainer}>
+				{isLoading && ref.current?.getCurrentIndex() === data.length - 1 && (
+					<ActivityIndicator
+						style={{ position: 'absolute', zIndex: 100 }}
+						size="large"
+					/>
+				)}
 				<Carousel
 					ref={ref}
 					loop={false}
