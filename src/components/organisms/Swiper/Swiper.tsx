@@ -83,7 +83,7 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 				onConfigurePanGesture={g => {
 					g.onChange(e => {
 						directionAnimVal.value = Math.sign(e.translationX)
-					})
+					}).runOnJS(true)
 				}}
 				fixedDirection="negative"
 				renderItem={({ item }) => renderItem(item)}
