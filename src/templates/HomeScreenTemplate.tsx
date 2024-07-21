@@ -4,11 +4,7 @@ import ScreenLayout from '../layouts/ScreenLayout'
 type HomeScreenTemplateProps = SwiperProps
 
 const HomeScreenTemplate = (props: HomeScreenTemplateProps) => {
-	return (
-		<ScreenLayout>
-			<Swiper {...props} />
-		</ScreenLayout>
-	)
+	return <Swiper {...props} />
 }
 
 export default HomeScreenTemplate

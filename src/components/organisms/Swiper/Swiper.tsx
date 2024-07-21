@@ -83,34 +83,36 @@ const Swiper = ({
 	)
 
 	return (
-		<View style={styles.mainContainer}>
-			<Carousel
-				ref={ref}
-				loop={false}
-				style={styles.carousel}
-				defaultIndex={0}
-				vertical={false}
-				width={PAGE_WIDTH}
-				height={PAGE_HEIGHT}
-				data={data}
-				onConfigurePanGesture={g => {
-					g.onChange(e => {
-						directionAnimVal.value = Math.sign(e.translationX)
-					}).runOnJS(true)
-				}}
-				fixedDirection="negative"
-				renderItem={({ item }) => renderItem(item)}
-				customAnimation={animationStyle}
-				windowSize={5}
-				onSnapToItem={index => {
-					loadPagination(index)
-					if (directionAnimVal.value === Math.sign(1)) {
-						onPressRight(index)
-					} else {
-						onPressLeft(index)
-					}
-				}}
-			/>
+		<>
+			<View style={styles.mainContainer}>
+				<Carousel
+					ref={ref}
+					loop={false}
+					style={[styles.carousel, { width: PAGE_WIDTH, height: PAGE_HEIGHT }]}
+					defaultIndex={0}
+					vertical={false}
+					width={PAGE_WIDTH}
+					height={PAGE_HEIGHT}
+					data={data}
+					onConfigurePanGesture={g => {
+						g.onChange(e => {
+							directionAnimVal.value = Math.sign(e.translationX)
+						}).runOnJS(true)
+					}}
+					fixedDirection="negative"
+					renderItem={({ item }) => renderItem(item)}
+					customAnimation={animationStyle}
+					windowSize={4}
+					onSnapToItem={index => {
+						loadPagination(index)
+						if (directionAnimVal.value === Math.sign(1)) {
+							onPressRight(index)
+						} else {
+							onPressLeft(index)
+						}
+					}}
+				/>
+			</View>
 			<View style={styles.buttonsContainer}>
 				<Pressable
 					style={styles.button}
@@ -129,24 +131,26 @@ const Swiper = ({
 					<Text>Right</Text>
 				</Pressable>
 			</View>
-		</View>
+		</>
 	)
 }
 
 const styles = StyleSheet.create({
-	mainContainer: { flex: 1 },
-	carousel: {
+	mainContainer: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		backgroundColor: 'red',
 	},
-	image: {
-		width: '80%',
-		height: '60%',
-		borderRadius: 20,
+	carousel: {
+		flexGrow: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		alignContent: 'center',
 	},
 	buttonsContainer: {
-		marginBottom: 30,
+		bottom: 10,
+		backgroundColor: 'blue',
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',

@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+		bottom: Dimensions.get('window').height * 0.12,
 	},
 	imageContainer: {
 		height: Dimensions.get('window').height * 0.6,
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
+		backgroundColor: 'white',
 		shadowColor: '#000000d1',
 		shadowOffset: {
 			width: 0,
