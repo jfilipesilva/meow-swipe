@@ -25,7 +25,6 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 	const animationStyle: TAnimationStyle = useCallback(
 		(value: number) => {
 			'worklet'
-			const translateY = interpolate(value, [0, 1], [0, -18])
 
 			const translateX =
 				interpolate(value, [-1, 0], [PAGE_WIDTH, 0], Extrapolation.CLAMP) *
@@ -52,12 +51,7 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 			)
 
 			return {
-				transform: [
-					{ translateY },
-					{ translateX },
-					{ rotateZ: `${rotateZ}deg` },
-					{ scale },
-				],
+				transform: [{ translateX }, { rotateZ: `${rotateZ}deg` }, { scale }],
 				zIndex,
 				opacity,
 			}
