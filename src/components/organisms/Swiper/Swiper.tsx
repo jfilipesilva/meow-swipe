@@ -1,11 +1,12 @@
-import { useCallback } from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { useCallback, useRef } from 'react'
+import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native'
 import {
 	Extrapolation,
 	interpolate,
 	useSharedValue,
 } from 'react-native-reanimated'
 import Carousel, {
+	ICarouselInstance,
 	TAnimationStyle,
 	TCarouselProps,
 } from 'react-native-reanimated-carousel'
@@ -17,6 +18,8 @@ export type SwiperProps = Pick<TCarouselProps, 'onSnapToItem'> & {
 }
 
 const Swiper = ({ data, ...props }: SwiperProps) => {
+	const ref = useRef<ICarouselInstance>(null)
+
 	const PAGE_WIDTH = Dimensions.get('window').width
 	const PAGE_HEIGHT = Dimensions.get('window').height
 
@@ -67,6 +70,7 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 	return (
 		<View style={{ flex: 1 }}>
 			<Carousel
+				ref={ref}
 				loop={false}
 				style={styles.carousel}
 				defaultIndex={0}
@@ -85,14 +89,31 @@ const Swiper = ({ data, ...props }: SwiperProps) => {
 				windowSize={5}
 				{...props}
 			/>
+			<View style={styles.buttonsContainer}>
+				<Pressable
+					style={styles.button}
+					onPress={() => {
+						directionAnimVal.value = Math.sign(-1)
+						ref.current?.next()
+					}}>
+					<Text>Left</Text>
+				</Pressable>
+				<Pressable
+					style={styles.button}
+					onPress={() => {
+						directionAnimVal.value = Math.sign(1)
+						ref.current?.next()
+					}}>
+					<Text>Right</Text>
+				</Pressable>
+			</View>
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
 	carousel: {
-		width: '100%',
-		height: '100%',
+		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -100,6 +121,29 @@ const styles = StyleSheet.create({
 		width: '80%',
 		height: '60%',
 		borderRadius: 20,
+	},
+	buttonsContainer: {
+		marginBottom: 30,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	button: {
+		height: 80,
+		aspectRatio: 1,
+		borderRadius: 80,
+		justifyContent: 'center',
+		alignItems: 'center',
+		shadowColor: '#000',
+		backgroundColor: 'white',
+		marginHorizontal: 20,
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.23,
+		shadowRadius: 2.62,
+		elevation: 4,
 	},
 })
 
