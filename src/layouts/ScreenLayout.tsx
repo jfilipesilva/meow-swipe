@@ -9,7 +9,7 @@ const ScreenLayout = ({ children }: ScreenLayoutProps) => {
 		<SafeAreaView
 			style={[
 				styles.mainContainer,
-				{ paddingBottom: bottom + (Platform.OS === 'android' ? 50 : 10) },
+				{ paddingBottom: bottom + (Platform.OS === 'android' ? 30 : 10) },
 			]}>
 			{children}
 		</SafeAreaView>
@@ -19,7 +19,6 @@ const ScreenLayout = ({ children }: ScreenLayoutProps) => {
 const styles = StyleSheet.create({
 	mainContainer: {
 		flex: 1,
-		paddingTop: 20,
 		backgroundColor: 'white',
 	},
 })

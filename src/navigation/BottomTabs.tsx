@@ -4,6 +4,8 @@ import { Dimensions, StyleSheet, View } from 'react-native'
 import HomeScreen from '../screens/HomeScreen'
 import Screen02 from '../screens/Screen02'
 import Screen03 from '../screens/Screen03'
+import { HotIcon, MessageIcon, PawIcon, UserIcon } from '../assets/images'
+import palette from '../theme/palette'
 
 const Tab = createBottomTabNavigator()
 
@@ -18,9 +20,33 @@ const BottomTabs = () => {
 				headerStyle: { borderColor: 'transparent' },
 				tabBarStyle: [styles.tabBar, { bottom }],
 			}}>
-			<Tab.Screen name="Home" component={HomeScreen} />
-			<Tab.Screen name="Screen02" component={Screen02} />
-			<Tab.Screen name="Screen03" component={Screen03} />
+			<Tab.Screen
+				name="Home"
+				component={HomeScreen}
+				options={{
+					tabBarIcon: ({ focused }) => (
+						<PawIcon fill={focused ? palette.activeColor : 'black'} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="Screen02"
+				component={Screen02}
+				options={{
+					tabBarIcon: ({ focused }) => (
+						<MessageIcon fill={focused ? palette.activeColor : 'black'} />
+					),
+				}}
+			/>
+			<Tab.Screen
+				name="Screen03"
+				component={Screen03}
+				options={{
+					tabBarIcon: ({ focused }) => (
+						<UserIcon fill={focused ? palette.activeColor : 'black'} />
+					),
+				}}
+			/>
 		</Tab.Navigator>
 	)
 }
@@ -37,7 +63,8 @@ const styles = StyleSheet.create({
 		borderRadius: 50,
 		paddingBottom: 0,
 		overflow: 'visible',
-		shadowColor: '#000',
+		borderColor: 'transparent',
+		shadowColor: palette.shadowColor,
 		shadowOffset: {
 			width: 0,
 			height: 4,
