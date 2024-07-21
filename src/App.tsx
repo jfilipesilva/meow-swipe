@@ -11,18 +11,21 @@ import { StatusBar, StyleSheet } from 'react-native'
 
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import BottomTabs from './navigation/BottomTabs'
+import { SWRConfig } from 'swr'
 
 const App = () => {
 	return (
-		<SafeAreaProvider style={styles.backgroundStyle}>
-			<NavigationContainer>
-				<StatusBar
-					barStyle="dark-content"
-					backgroundColor={styles.backgroundStyle.backgroundColor}
-				/>
-				<BottomTabs />
-			</NavigationContainer>
-		</SafeAreaProvider>
+		<SWRConfig>
+			<SafeAreaProvider style={styles.backgroundStyle}>
+				<NavigationContainer>
+					<StatusBar
+						barStyle="dark-content"
+						backgroundColor={styles.backgroundStyle.backgroundColor}
+					/>
+					<BottomTabs />
+				</NavigationContainer>
+			</SafeAreaProvider>
+		</SWRConfig>
 	)
 }
 
