@@ -6,7 +6,7 @@
 		"android": "react-native run-android",
 		"ios": "react-native run-ios",
 		"lint": "eslint .",
-		"start": "react-native start",
+		"start": "watchman watch-del-all && react-native start --reset-cache --experimental-debugger",
 		"test": "jest",
 		"clean": "yarn install && del-cli ios/build ios/Pods && cd ios && [ -f .xcode.env.local ] && rm .xcode.env.local || echo '.xcode.env.local file does not exist' && bundle install && bundle exec pod install && cd .. && del-cli android/build android/app/build android/.idea android/.gradle && cd android && ./gradlew clean && cd .."
 	},
