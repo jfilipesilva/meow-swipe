@@ -16,7 +16,7 @@ export type SwiperProps = Pick<TCarouselProps, 'onSnapToItem'> & {
 	data: SwiperData
 }
 
-const Swiper = ({ data }: SwiperProps) => {
+const Swiper = ({ data, ...props }: SwiperProps) => {
 	const PAGE_WIDTH = Dimensions.get('window').width
 	const PAGE_HEIGHT = Dimensions.get('window').height
 
@@ -89,6 +89,7 @@ const Swiper = ({ data }: SwiperProps) => {
 				renderItem={({ item }) => renderItem(item)}
 				customAnimation={animationStyle}
 				windowSize={5}
+				{...props}
 			/>
 		</View>
 	)
